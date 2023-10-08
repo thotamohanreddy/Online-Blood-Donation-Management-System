@@ -34,9 +34,9 @@ app.use(express.json());
 
 var db = mysql.createConnection({
   host: "localhost",
-  user: "nithin",
-  password: "S@inithin1233",
-  database: "blood"
+  user: "root",
+  password: "My$tr0ngP@ssw0rd!",
+  database: "obdms"
 });
 
 db.connect(function (err) {

@@ -1,0 +1,14 @@
+#Ignore .env files
+.env
+
+#Ignore package-lock.json
+package-lock.json
+
+#Ignore node_modules
+node_modules/
+
+#Ignore package-lock inside the server directory
+server/package-lock.json
+
+#Ignore package-lock inside the client directory
+client/package-lock.json
