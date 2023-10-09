@@ -37,7 +37,7 @@ const UserLogin = () => {
         />
         <input
           name="password"
-          type="text "
+          type="password"
           placeholder="password"
           onChange={(e) => {
             setuserPassword(e.target.value);

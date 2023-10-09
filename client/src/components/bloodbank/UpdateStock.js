@@ -20,16 +20,16 @@ const UpdateStock = () => {
     );
   });
   //updateBloodStock
-  const increaseStock = (b_id) => {
+  const increaseStock = (b_id, unit) => {
     Axios.put("http://localhost:3001/login/emp/ub/update", {
       b_id: b_id,
-      unitUpdate: unitUpdate,
+      unitUpdate: unit,
     }).then(setunitUpdate(""));
   };
-  const decreaseStock = (b_id) => {
+  const decreaseStock = (b_id, unit) => {
     Axios.put("http://localhost:3001/login/emp/ub/update", {
       b_id: b_id,
-      unitUpdate: -unitUpdate,
+      unitUpdate: -unit,
     }).then(setunitUpdate(""));
   };
   return (
@@ -55,8 +55,8 @@ const UpdateStock = () => {
                     setunitUpdate(e.target.value);
                   }}
                 />
-                <button onClick={() => increaseStock(val.b_id)}>INC</button>
-                <button onClick={() => decreaseStock(val.b_id)}>DEC</button>
+                <button onClick={() => increaseStock(val.b_id, val.unit)}>INC</button>
+                <button onClick={() => decreaseStock(val.b_id, val.unit)}>DEC</button>
               </tr>
             );
           })}

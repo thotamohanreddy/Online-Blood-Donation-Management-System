@@ -39,7 +39,7 @@ const EmployeeLogin = () => {
         />
         <input
           name="password"
-          type="text "
+          type="password"
           placeholder="password"
           onChange={(e) => {
             setempPassword(e.target.value);
