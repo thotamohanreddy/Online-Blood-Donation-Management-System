@@ -14,6 +14,8 @@ const UserRegister = () => {
   const [userAge, setuserAge] = useState("");
   const [userGender, setuserGender] = useState("");
   const [userBloodGroup, setuserBloodGroup] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
+
 
   const submituserRegister = () => {
     const regurl = "http://localhost:3001/reg/usr";
@@ -28,13 +30,22 @@ const UserRegister = () => {
       userUserName: userUserName,
       userPassword: userPassword,
     }).then((response) => {
-      alert(response.data.message);
+      console.log(response.data);
+      if (response.data.success) {
+        setMessage({ text: response.data.message, type: "success" });
+      } else {
+        setMessage({ text: response.data.error, type: "error" });
+      }
     });
-  };
-
+  }
   return (
     <div className="user-register">
       <h2>DONAR REGISTER</h2>
+      {message.text && (
+    <div className={`message ${message.type}`}>
+      {message.text}
+    </div>
+  )}
       <form className="userReg-form">
         <input
           name="userFName"

@@ -3,6 +3,7 @@ import mysql from 'mysql2'
 import express from 'express'
 import bodyParser from 'body-parser';
 import cors from 'cors'
+import dotenv from 'dotenv';
 
 
 //controllers
@@ -24,7 +25,10 @@ import HandleRequestHandler from './controllers/bloodbank/HandleRequestHandler.j
 import DashboardHandler from './controllers/dashboard/DashboardHandler.js';
 import SearchHandler from './controllers/bloodbank/SearchHandler.js';
 
+
+
 //create the app
+dotenv.config();
 var app = express();
 
 // middilewares set app to use the body-parser
@@ -33,10 +37,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "My$tr0ngP@ssw0rd!",
-  database: "obdms"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 });
 
 db.connect(function (err) {

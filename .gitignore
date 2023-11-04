@@ -12,3 +12,6 @@ server/package-lock.json
 
 #Ignore package-lock inside the client directory
 client/package-lock.json
+
+#Ignore sql files
+*.sql

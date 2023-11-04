@@ -10,7 +10,6 @@ const UserLoginHandler = (app, db) => {
       "SELECT * FROM user_login where userUserName = ? and userPassword =?";
     //
     db.query(sqlSelect,[userUserName,userPassword], (err, result) => {
-      console.log(result);
       if (err) {
         res.send({ err: err });
         console.log(err);
@@ -18,6 +17,7 @@ const UserLoginHandler = (app, db) => {
       }
       /////
       if (result.length > 0) {
+        confirm.log(result);
         res.send(result);
         console.log("**RESULT SENT TO FRONT END**");
       } else {
