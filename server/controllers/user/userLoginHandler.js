@@ -17,7 +17,7 @@ const UserLoginHandler = (app, db) => {
       }
       /////
       if (result.length > 0) {
-        confirm.log(result);
+        console.log(result);
         res.send(result);
         console.log("**RESULT SENT TO FRONT END**");
       } else {
