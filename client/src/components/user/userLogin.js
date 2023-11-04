@@ -7,6 +7,7 @@ import "../../assets/css/UserLogin.css";
 const UserLogin = () => {
   const [userUserName, setuserUserName] = useState("");
   const [userPassword, setuserPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
 
   const userLoginCheck = () => {
     Axios.post("http://localhost:3001/login/usr", {
@@ -14,10 +15,11 @@ const UserLogin = () => {
       userPassword: userPassword,
     }).then((response) => {
       if (response.data.message) {
-        alert(response.data.message);
+        setLoginMessage(response.data.message);
       } else {
         localStorage.setItem('user_id', response.data[0].user_id)
         window.location = "/login/usr/dash";
+        setLoginMessage("Login Successful!");
       }
     });
   };
@@ -46,6 +48,7 @@ const UserLogin = () => {
         />
         <button onClick={userLoginCheck}>Submit</button>
       </div>
+      {loginMessage && <p>{ loginMessage }</p>}
     </div>
   );
 };
