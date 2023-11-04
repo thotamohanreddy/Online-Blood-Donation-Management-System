@@ -14,7 +14,7 @@ const UserRegister = () => {
   const [userAge, setuserAge] = useState("");
   const [userGender, setuserGender] = useState("");
   const [userBloodGroup, setuserBloodGroup] = useState("");
-  const [message, setMessage] = useState({ text: "", type: "" });
+  const [message, setMessage] = useState("");
 
 
   const submituserRegister = () => {
@@ -30,23 +30,22 @@ const UserRegister = () => {
       userUserName: userUserName,
       userPassword: userPassword,
     }).then((response) => {
-      console.log(response.data);
-      if (response.data.success) {
-        setMessage({ text: response.data.message, type: "success" });
+      // console.log(response.status===200);
+      if (response.status) {
+        setMessage(response.data.message);
+        window.location = "/login/usr";
       } else {
-        setMessage({ text: response.data.error, type: "error" });
+        setMessage(response.data.message);
       }
-    });
+    }).catch((error) => {
+      setMessage("Registration failed");
+    })
   }
+
   return (
     <div className="user-register">
       <h2>DONAR REGISTER</h2>
-      {message.text && (
-    <div className={`message ${message.type}`}>
-      {message.text}
-    </div>
-  )}
-      <form className="userReg-form">
+      <form className="userReg-form" onSubmit={(e) => { e.preventDefault(); }}>
         <input
           name="userFName"
           type="text "
@@ -127,6 +126,8 @@ const UserRegister = () => {
           }}
         />
         <button onClick={submituserRegister}>REGISTER</button>
+        {/* Display the message */}
+        {message && <p>{message}</p> }
       </form>
     </div>
   );

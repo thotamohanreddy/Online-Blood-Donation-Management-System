@@ -10,7 +10,7 @@
 }
 .user-login form{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
 }
 .user-login button{
@@ -46,4 +46,8 @@
 .user-login input:focus{
     outline: none;
     
+}
+.user-form-new{
+    display: flex;
+    flex-direction: column;
 }

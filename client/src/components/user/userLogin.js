@@ -27,8 +27,8 @@ const UserLogin = () => {
   return (
     <div className="user-login">
       <h2>USER LOGIN</h2>
-      <div>
-        <input
+      <div className="user-form-new">
+        <input 
           name="username"
           type="text "
           placeholder="username"
