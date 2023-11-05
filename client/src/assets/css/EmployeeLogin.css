@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin-top:167px;
+    min-height: 100vh;
 }
 .emp-login h2{
     font-size: 40px;

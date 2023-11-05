@@ -5,6 +5,7 @@
     text-align: center;
     font-family:monospace;
     padding-top: 20px;
+    min-height: 100vh;
 }
 .empReg-form{
     display: flex;

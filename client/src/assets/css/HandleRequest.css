@@ -5,6 +5,7 @@
     align-items: center;
     padding-top: 6em;
     font-size: 25px;
+    min-height: 100vh;
 }
 .req-table th{
     padding-left: 1em;

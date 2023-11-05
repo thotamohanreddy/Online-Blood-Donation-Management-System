@@ -3,7 +3,9 @@
     flex-direction:column;
     align-items: center;
     text-align: center;
-    font-family:monospace;}
+    font-family:monospace;
+    min-height: 100vh;
+}
 .userReg-form{
     display: flex;
     flex-direction: column;
@@ -12,7 +14,7 @@
 }
 .userReg-form input{
     margin:2px;
-    width: 500px;
+    width: 300px;
     height: 30px;
    padding-left: 1em;
     border-radius: 30pxd;
@@ -27,7 +29,7 @@
 }
 
 .userReg-form button{
-    width: 90px;
+    width: 150px;
     height: 30px;
     align-items: center;
     border-radius: 30px;

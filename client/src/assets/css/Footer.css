@@ -1,9 +1,10 @@
 .footer {
-  background-color:transparent;
+  background-image: linear-gradient(to bottom ,rgb(246, 92, 92), #FF0000);
+  min-height: 5vh;
   align-items: center;
   vertical-align: center;
   width: 100%;
-  margin-top: 5em;
+  margin-top: auto;
   height: 40px;
   padding-top: 18px;
 }
@@ -26,5 +27,5 @@
   -o-border-radius: 10px;
 }
 .footer a:hover{
-  color:red;
+  color:rgb(247, 241, 241);
 }

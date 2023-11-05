@@ -58,7 +58,8 @@
 .updatehealth{
   display: flex;
   flex-direction: column;
-  }
+  min-height: 100vh;
+}
 
 .updatehealth button{
   width: 10em;
