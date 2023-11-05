@@ -6,7 +6,7 @@ import "../../assets/css/UpdateStock.css";
 
 const UpdateStock = () => {
   //variables
-  const [unitUpdate, setUnitUpdate] = useState(0);
+  const [unitUpdates, setUnitUpdates] = useState({});
   //array of blood unit availbility
   const [bloodTable, setBloodTable] = useState([]);
 
@@ -27,7 +27,7 @@ const UpdateStock = () => {
     })
       .then((response) => {
         console.log(response.data);
-        setUnitUpdate(0);
+        setUnitUpdates({ ...unitUpdates, [b_id]: 0 }); // Clear the input field for the specific blood group
         setBloodTable(response.data);
       })
       .catch((error) => {
@@ -52,15 +52,17 @@ const UpdateStock = () => {
                 <td>{val.blood_group}</td>
                 <td>{val.unit}</td>
                 <input
-                  type="number"
-                  onChange={(e) => {
-                    setUnitUpdate(e.target.value);
-                  }}
-                />
-              <button onClick={() => updateStock(val.b_id, parseInt(unitUpdate))}>
+                type="number"
+                value={unitUpdates[val.b_id]}
+                onChange={(e) => {
+                  const updatedUnit = parseInt(e.target.value);
+                  setUnitUpdates({ ...unitUpdates, [val.b_id]: updatedUnit });
+                }}
+              />
+              <button onClick={() => updateStock(val.b_id, parseInt(unitUpdates[val.b_id]))}>
                 INC
               </button>
-              <button onClick={() => updateStock(val.b_id, -parseInt(unitUpdate))}>
+              <button onClick={() => updateStock(val.b_id, -parseInt(unitUpdates[val.b_id]))}>
                 DEC
               </button>
               </tr>
