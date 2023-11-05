@@ -8,22 +8,34 @@ const UpdateStockHandler = (app, db) => {
       if (err) {
         console.log(err);
       } else {
+        console.log(result);
         res.send(result);
       }
     });
   });
 
-  app.put("/login/emp/ub/update", (req, res) => {
+  app.post("/login/emp/ub/update", (req, res) => {
     //variables
     const unitUpdate = req.body.unitUpdate;
     const b_id = req.body.b_id;
     //query
-    const sqlUpdate = "UPDATE blood_stocks SET unit=? WHERE b_id= ?;";
-    //
+    const sqlUpdate = "UPDATE blood_stocks SET unit = unit + ? WHERE b_id= ?;";
     db.query(sqlUpdate, [unitUpdate, b_id], (err, result) => {
-      // res.send(result);
       if (err) {
         console.log("**ERROR IN UPDATING UNIT VALUE**" + err);
+        res.status(500).send("Error updating unit value");
+      } else {
+        // Send the updated data as the response
+        const sqlSelect = "SELECT * FROM blood_stocks;";
+        db.query(sqlSelect, (err, updatedResult) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send("Error fetching updated data");
+          } else {
+            console.log(updatedResult);
+            res.send(updatedResult);
+          }
+        });
       }
     });
   });

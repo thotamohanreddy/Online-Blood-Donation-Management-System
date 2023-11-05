@@ -6,37 +6,39 @@ import "../../assets/css/UpdateStock.css";
 
 const UpdateStock = () => {
   //variables
-  const [unitUpdate, setunitUpdate] = useState(0);
+  const [unitUpdate, setUnitUpdate] = useState(0);
   //array of blood unit availbility
-  const [bloodTable, setbloodTable] = useState([]);
+  const [bloodTable, setBloodTable] = useState([]);
 
   //useEffect call
   useEffect(() => {
-    Axios.get("http://localhost:3001/login/emp/ub", (req, res) => {}).then(
+    Axios.get("http://localhost:3001/login/emp/ub", (req, res) => { }).then(
       (response) => {
-        //console.log(response.data);
-        setbloodTable(response.data);
+        setBloodTable(response.data);
       }
     );
-  });
+  }, []);
   //updateBloodStock
-  const increaseStock = (b_id, unit) => {
-    Axios.put("http://localhost:3001/login/emp/ub/update", {
+  // Update Blood Stock
+  const updateStock = (b_id, unitChange) => {
+    Axios.post("http://localhost:3001/login/emp/ub/update", {
       b_id: b_id,
-      unitUpdate: unit,
-    }).then(setunitUpdate(""));
-  };
-  const decreaseStock = (b_id, unit) => {
-    Axios.put("http://localhost:3001/login/emp/ub/update", {
-      b_id: b_id,
-      unitUpdate: -unit,
-    }).then(setunitUpdate(""));
+      unitUpdate: unitChange,
+    })
+      .then((response) => {
+        console.log(response.data);
+        setUnitUpdate(0);
+        setBloodTable(response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating stock: " + error);
+      });
   };
   return (
     <div className="dashboard">
       <h1>UPDATE BLOOD STOCK</h1>
 
-      <table className="update-blood-table">
+      <table className="update-blood-table">  
         <thead>
           <tr>
             <th>Blood Group</th>
@@ -52,11 +54,15 @@ const UpdateStock = () => {
                 <input
                   type="number"
                   onChange={(e) => {
-                    setunitUpdate(e.target.value);
+                    setUnitUpdate(e.target.value);
                   }}
                 />
-                <button onClick={() => increaseStock(val.b_id, val.unit)}>INC</button>
-                <button onClick={() => decreaseStock(val.b_id, val.unit)}>DEC</button>
+              <button onClick={() => updateStock(val.b_id, parseInt(unitUpdate))}>
+                INC
+              </button>
+              <button onClick={() => updateStock(val.b_id, -parseInt(unitUpdate))}>
+                DEC
+              </button>
               </tr>
             );
           })}

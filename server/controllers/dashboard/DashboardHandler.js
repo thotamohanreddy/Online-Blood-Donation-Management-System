@@ -6,9 +6,11 @@ const DashboardHandler = (app, db) => {
 
     //db search
     db.query(sqlSelect, (err, result) => {
-      console.log(result);
-      res.send(result);
-      // console.log("blood from server", result);
+      if (err) {
+        console.log("Error fetching blood stocks");
+      } else {
+        res.send(result);
+      }
     });
   });
 };
