@@ -10,8 +10,9 @@ const UserRegisterHandler = (app, db) => {
     const userPlace = req.body.userPlace;
     const userUserName = req.body.userUserName;
     const userPassword = req.body.userPassword;
+    const confirmPassword = req.body.confirmPassword;
 
-    
+   
     const sqlInsert1 =
       "INSERT INTO user_details (userFName,userAge,userGender,userBloodGroup,userPhone,userMail,userPlace) VALUES (?,?,?,?,?,?,?)";
 

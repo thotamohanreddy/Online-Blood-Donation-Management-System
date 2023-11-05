@@ -7,6 +7,7 @@ import "../../assets/css/UserRegister.css";
 const UserRegister = () => {
   const [userUserName, setuserUsername] = useState("");
   const [userPassword, setuserPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [userFName, setuserFName] = useState("");
   const [userMail, setuserMail] = useState("");
   const [userPhone, setuserPhone] = useState("");
@@ -18,28 +19,41 @@ const UserRegister = () => {
 
 
   const submituserRegister = () => {
-    const regurl = "http://localhost:3001/reg/usr";
-    Axios.post(regurl, {
-      userFName: userFName,
-      userAge: userAge,
-      userGender: userGender,
-      userBloodGroup: userBloodGroup,
-      userPhone: userPhone,
-      userMail: userMail,
-      userPlace: userPlace,
-      userUserName: userUserName,
-      userPassword: userPassword,
-    }).then((response) => {
-      // console.log(response.status===200);
-      if (response.status) {
-        setMessage(response.data.message);
-        window.location = "/login/usr";
-      } else {
-        setMessage(response.data.message);
-      }
-    }).catch((error) => {
-      setMessage("Registration failed");
-    })
+    if (userPassword === confirmPassword) {
+      const regurl = "http://localhost:3001/reg/usr";
+      Axios.post(regurl, {
+        userFName: userFName,
+        userAge: userAge,
+        userGender: userGender,
+        userBloodGroup: userBloodGroup,
+        userPhone: userPhone,
+        userMail: userMail,
+        userPlace: userPlace,
+        userUserName: userUserName,
+        userPassword: userPassword,
+      }).then((response) => {
+        if (response.status === 200) {
+          setuserFName("");
+          setuserAge("");
+          setuserGender("");
+          setuserBloodGroup("");
+          setuserPhone("");
+          setuserMail("");
+          setuserUsername("");
+          setuserPassword("");
+          setConfirmPassword("");
+          setMessage(response.data.message);
+          alert("Registration Successful");
+          window.location = "/login/usr";
+        } else {
+          setMessage(response.data.message);
+        }
+      }).catch((error) => {
+        setMessage(error.message);
+      })
+    } else {
+      alert("Passwords did not match");
+    }
   }
 
   return (
@@ -102,7 +116,7 @@ const UserRegister = () => {
         />
         <input
           name="userPlace"
-          type="text "
+          type="text"
           placeholder="Place"
           onChange={(e) => {
             setuserPlace(e.target.value);
@@ -111,7 +125,7 @@ const UserRegister = () => {
         />
         <input
           name="username"
-          type="text "
+          type="text"
           placeholder="User Name"
           onChange={(e) => {
             setuserUsername(e.target.value);
@@ -119,14 +133,21 @@ const UserRegister = () => {
         />
         <input
           name="password"
-          type="text "
+          type="password"
           placeholder="Password"
           onChange={(e) => {
             setuserPassword(e.target.value);
           }}
         />
+        <input
+          name="password"
+          type="password"
+          placeholder="Confirm Password"
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+          }}
+        />
         <button onClick={submituserRegister}>REGISTER</button>
-        {/* Display the message */}
         {message && <p>{message}</p> }
       </form>
     </div>

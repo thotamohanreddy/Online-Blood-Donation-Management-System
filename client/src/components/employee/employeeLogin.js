@@ -28,10 +28,10 @@ const EmployeeLogin = () => {
   return (
     <div className="emp-login">
       <h2>EMPLOYEE LOGIN</h2>
-      <div>
+      <div className="emp-form-new">
         <input
           name="username"
-          type="text "
+          type="text"
           placeholder="username"
           onChange={(e) => {
             setempUsername(e.target.value);

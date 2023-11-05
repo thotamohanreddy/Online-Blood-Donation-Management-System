@@ -12,15 +12,21 @@
     text-align: center;
     align-items: center;
 }
-.empReg-form input{
-    margin:10px;
-    width: 500px;
+.emp-register input{
+    width: 300px;
     height: 30px;
-    text-align: left;
+    margin:5px;
+    text-align: center;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
 }
 .empReg-form button{
-    width: 90px;
+    width: 150px;
     height: 30px;
     margin-top: 30px;
     align-items: center;
+    border-radius: 30px;
 }
