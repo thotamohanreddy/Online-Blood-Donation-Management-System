@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/layout/Navbar";
 import Dashboard from "./components/layout/Dashboard";
@@ -40,7 +40,7 @@ function App() {
         <Route exact path="/home/search/blood" element={<Search />} />
         <Route exact path="/request" element={<RequestClass />} />
         <Route exact path="/login/emp/hr" element={<HandleRequest />} />
-        {/* <Route exact path="/login/usr/dash/req" element={Request}/> */}
+        <Route path="/*" element={<Navigate to="/home" />} />
       </Routes>
     </div>
   );
