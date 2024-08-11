@@ -15,3 +15,6 @@ client/package-lock.json
 
 #Ignore sql files
 *.sql
+
+#Ignore editor files
+.vscode/
